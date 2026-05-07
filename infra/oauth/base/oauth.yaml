@@ -1,0 +1,27 @@
+---
+apiVersion: config.openshift.io/v1
+kind: OAuth
+metadata:
+  name: cluster
+spec:
+  identityProviders:
+    - name: IPA
+      mappingMethod: claim
+      type: LDAP
+      ldap:
+        attributes:
+          id:
+            - dn
+          email:
+            - mail
+          name:
+            - cn
+          preferredUsername:
+            - uid
+        bindDN: __PATCH__
+        bindPassword:
+          name: __PATCH__
+        ca:
+          name: custom-ca
+        insecure: false
+        url: "ldaps://idm.clam.lan/cn=users,cn=accounts,dc=clam,dc=lan?uid"
