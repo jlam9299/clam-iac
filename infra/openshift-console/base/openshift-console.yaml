@@ -1,0 +1,10 @@
+---
+apiVersion: operator.openshift.io/v1
+kind: Console
+metadata:
+  name: cluster
+spec:
+  route:
+    hostname: __PATCH__
+    secret:
+      name: ""

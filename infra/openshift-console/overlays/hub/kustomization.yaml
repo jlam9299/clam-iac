@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+    - ../../base
+patches:
+- target:
+    kind: Console
+    name: cluster
+  patch: |-
+    - op: replace
+      path: /spec/route/hostname
+      value: "console.apps.ocp.clam.lan"
