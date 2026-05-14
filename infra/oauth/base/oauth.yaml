@@ -24,4 +24,4 @@ spec:
         ca:
           name: custom-ca
         insecure: false
-        url: "ldaps://idm.clam.lan/cn=users,cn=accounts,dc=clam,dc=lan?uid"
+        url: "ldaps://idm.clamie.au/cn=users,cn=accounts,dc=clamie,dc=au?uid"
