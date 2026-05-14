@@ -6,5 +6,4 @@ metadata:
 spec:
   route:
     hostname: __PATCH__
-    secret:
-      name: ""
+  

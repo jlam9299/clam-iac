@@ -9,4 +9,4 @@ patches:
   patch: |-
     - op: replace
       path: /spec/route/hostname
-      value: "console.apps.ocp.clam.lan"
+      value: "console.apps.ocp.clamie.au"

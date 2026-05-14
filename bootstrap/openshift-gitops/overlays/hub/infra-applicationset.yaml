@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-config
+  namespace: openshift-gitops
+spec:
+  generators:
+    - list:
+        elements:
+          - name: openshift-console
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: git@github.com:jlam9299/clam-iac.git
+        targetRevision: HEAD
+        path: 'infra/{{name}}/overlays/hub'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{name}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
