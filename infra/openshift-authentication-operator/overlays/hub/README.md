@@ -13,12 +13,12 @@ The `bind-ocp` user must be created in FreeIPA. This user's password should be s
 ```bash
 # Do not save echo command to bash history.
 set +o history
-echo -n 'bindPassword=PASSWORD' > /tmp/bindPassword
+echo -n 'bindPassword=PASSWORD' > /tmp/bind-ocp-password
 set -o history
 
 # Create FreeIPA vault and archive content.
 ipa vault-add --user bind-ocp --type standard bind-ocp-password
-ipa vault-archive --user bind-ocp --in /tmp/bindPassword bind-ocp-password
+ipa vault-archive --user bind-ocp --in /tmp/bind-ocp-password bind-ocp-password
 ```
 
 ## Applying
@@ -32,23 +32,27 @@ kinit admin@CLAMIE.AU
 ### 2. Retrieve the bind password from IDM Vault
 
 ```bash
+password_file='infra/openshift-authentication-operator/overlays/hub/bind-ocp-password'
+
 ipa vault-retrieve bind-ocp-password \
   --user bind-ocp \
-  --out infra/oauth/overlays/hub/ldap-bind-password.txt
+  --out $password_file
+
+echo -n "bindPassowrd=$(cat $password_file)" > $password_file
 ```
 
-***NOTE: The format of the password file should be `bindPassword=PASSWORD`.***
+***NOTE: The format of the password file should be `bindPassword=<PASSWORD>`.***
 
 ### 3. Apply the overlay
 
 ```bash
-oc apply -k infra/oauth/overlays/hub/
+oc apply -k infra/openshift-authentication-operator/overlays/hub/
 ```
 
 ### 4. Clean up
 
 ```bash
-rm infra/oauth/overlays/hub/ldap-bind-password.txt
+rm infra/openshift-authentication-operator/overlays/hub/bind-ocp-password
 ```
 
 ## Notes

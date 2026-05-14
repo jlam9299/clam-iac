@@ -1,0 +1,28 @@
+kind: LDAPSyncConfig
+apiVersion: v1
+url: ldaps://idm.clamie.au
+bindDN: "uid=bind-ocp,cn=users,cn=accounts,dc=clamie,dc=au"
+bindPassword:
+  file: "/tmp/bind-ocp-password"
+insecure: false
+ca: /etc/ipa/ca.crt
+rfc2307:
+  groupsQuery:
+    baseDN: "cn=groups,cn=accounts,dc=clamie,dc=au"
+    scope: sub
+    derefAliases: never
+    filter: "(cn=ocp-*)"
+  groupUIDAttribute: dn
+  groupNameAttributes:
+    - cn
+  groupMembershipAttributes:
+    - member
+  usersQuery:
+    baseDN: "cn=users,cn=accounts,dc=clamie,dc=au"
+    scope: sub
+    derefAliases: never
+  userUIDAttribute: dn
+  userNameAttributes:
+    - uid
+  tolerateMemberNotFoundErrors: true
+  tolerateMemberOutOfScopeErrors: true

@@ -11,7 +11,7 @@ secretGenerator:
     namespace: openshift-config
     type: Opaque
     envs:
-      - ldap-bind-password.txt
+      - ldap-bind-password
 
 patches:
   - target:
