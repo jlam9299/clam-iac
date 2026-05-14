@@ -7,7 +7,7 @@ spec:
   generators:
     - list:
         elements:
-          - name: openshift-console
+          - name: openshift-console-operator
   template:
     metadata:
       name: '{{name}}'

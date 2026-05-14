@@ -54,10 +54,10 @@ One-time manual apply per cluster. Contains the OpenShift GitOps operator `Subsc
 
 Cluster infrastructure configuration reconciled by ArgoCD. Each subdirectory is a discrete component following the `base/` + `overlays/<cluster>/` pattern.
 
-| Component           | Description                                                                            |
-| ------------------- | -------------------------------------------------------------------------------------- |
-| `oauth`             | Configures LDAP authentication via FreeIPA (`idm.clamie.au`)                           |
-| `openshift-console` | Sets the console hostname and enables console plugins (GitOps, monitoring, networking) |
+| Component                           | Description                                                                            |
+| ----------------------------------- | -------------------------------------------------------------------------------------- |
+| `openshift-authentication-operator` | Configures LDAP authentication via FreeIPA (`idm.clamie.au`)                           |
+| `openshift-console-operator`        | Sets the console hostname and enables console plugins (GitOps, monitoring, networking) |
 
 ### `apps/`
 
