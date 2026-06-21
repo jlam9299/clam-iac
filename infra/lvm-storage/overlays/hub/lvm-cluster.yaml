@@ -1,0 +1,23 @@
+apiVersion: lvm.topolvm.io/v1alpha1
+kind: LVMCluster
+metadata:
+  name: lvmcluster-sata-ssd
+  namespace: openshift-lvm-storage
+  annotations:
+    # Must land AFTER the operator CSV is Succeeded — the CRD won't
+    # exist until then. Sync-wave 1 vs 0 above handles ordering,
+    # but Argo will still need the operator healthy first, not just applied.
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  storage:
+    deviceClasses:
+      - name: vg-sata-ssd
+        default: true
+        deviceSelector:
+          paths:
+            - /dev/sda
+          forceWipeDevicesAndDestroyAllData: false
+        thinPoolConfig:
+          name: thin-pool-1
+          sizePercent: 90
+          overprovisionRatio: 10
