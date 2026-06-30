@@ -8,6 +8,7 @@ spec:
     - list:
         elements:
           - name: openshift-console-operator
+          - name: openshift-lvm-storage
   template:
     metadata:
       name: '{{name}}'
