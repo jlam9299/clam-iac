@@ -1,0 +1,8 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: infra-keycloak-operator-group
+  namespace: infra-keycloak
+spec:
+  targetNamespaces:
+    - infra-keycloak

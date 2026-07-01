@@ -1,0 +1,24 @@
+apiVersion: local.storage.openshift.io/v1alpha1
+kind: LocalVolumeSet
+metadata:
+  name: local-sata-ssd
+  namespace: openshift-local-storage
+spec:
+  nodeSelector:
+    nodeSelectorTerms:
+      - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+              - node-01
+              - node-02
+              - node-03
+  storageClassName: local-sata-ssd
+  volumeMode: Filesystem
+  fstype: xfs
+  maxDeviceCount: 1
+  deviceInclusionSpec:
+    deviceTypes:
+      - disk
+    minSize: 400Gi
+    maxSize: 500Gi

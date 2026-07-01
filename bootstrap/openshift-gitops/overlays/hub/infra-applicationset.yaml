@@ -7,8 +7,9 @@ spec:
   generators:
     - list:
         elements:
+          - name: cloudnative-pg-operator
           - name: openshift-console-operator
-          - name: openshift-lvm-storage
+          - name: openshift-lvm-storage-operator
   template:
     metadata:
       name: '{{name}}'
@@ -20,7 +21,6 @@ spec:
         path: 'infra/{{name}}/overlays/hub'
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{name}}"
       syncPolicy:
         automated:
           prune: true
